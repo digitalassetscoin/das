@@ -1,0 +1,113 @@
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  ~ Copyright © 2013-2016 The Nxt Core Developers.                            ~
+  ~ Copyright © 2016-2017 Jelurida IP B.V.                                    ~
+  ~                                                                           ~
+  ~ See the LICENSE.txt file at the top-level directory of this distribution  ~
+  ~ for licensing information.                                                ~
+  ~                                                                           ~
+  ~ Unless otherwise agreed in a custom licensing agreement with Jelurida B.V.,
+  ~ no part of the Nxt software, including this file, may be copied, modified,~
+  ~ propagated, or distributed except according to the terms contained in the ~
+  ~ LICENSE.txt file.                                                         ~
+  ~                                                                           ~
+  ~ Removal or modification of this copyright notice is prohibited.           ~
+  ~                                                                           ~
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+
+<div id="generators_page" class="paginated page">
+    <script type="text/x-handlebars-template">
+        <section class="content-header">
+            <h1>{{i18n "generators"}}</h1>
+        </section>
+        <section class="content">
+            <div class="row">
+                <div class="col-lg-6 col-xs-6">
+                    <div class="das-card das-round2 widget-border-bottom">
+                        <div class="das-card-body" style="height:100px">
+                            <div class="inner das-box">
+                                <h3 class="das-widget-margin das-icon-font das-xs-f14">
+                                    <span class="{{{loadingDotsClass}}}">{{{timeFormatted}}}</span>
+                                </h3>
+                                <p data-i18n="last_block_time" class="das-xs-f12">Last Block Time</p>
+                            </div>
+                            <div class="icon das-icon-3 das-icon-box das-font">
+                                <i class="fa fa-clock-o"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-3 col-xs-6">
+                    <div class="das-card das-round2 widget-border-bottom">
+                        <div class="das-card-body" style="height:100px">
+                            <div class="inner das-box">
+                                <h3 class="das-widget-margin das-icon-font das-xs-f16">
+                                    <span class="{{{loadingDotsClass}}}">{{{heightFormatted}}}</span>
+                                </h3>
+                                <p data-i18n="height" class="das-xs-f12">Height</p>
+                            </div>
+                            <div class="icon das-icon-3 das-icon-box das-font">
+                                <i class="fa fa-code"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-xs-6">
+                    <div class="das-card das-round2 widget-border-bottom">
+                        <div class="das-card-body" style="height:100px">
+                            <div class="inner das-box">
+                                <h3 class="das-widget-margin das-icon-font das-xs-f16">
+                                    <span class="{{{loadingDotsClass}}}">{{{activeCount}}}</span>
+                                </h3>
+                                <p data-i18n="active_forgers" class="das-xs-f12">Active Forgers</p>
+                            </div>
+                            <div class="icon das-icon-3 das-icon-box das-font">
+                                <i class="fa fa-arrow-up"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            {{#if errorMessage}}
+            <div class="alert alert-danger ml-0" role="alert">{{ errorMessage }}</div>
+            {{/if}}
+            {{#if infoMessage}}
+            <div class="alert alert-info ml-0" role="alert">{{ infoMessage }}</div>
+            {{/if}}
+            <div class="panel panel-default">
+                <div class="data-container table-responsive {{when isLoading 'data-loading' isEmpty 'data-empty'}} panel-body">
+                    <table class="table table-striped" id="generators_table">
+                        <thead>
+                        <tr>
+                            <th>{{i18n "account"}}</th>
+                            <th class="numeric">{{i18n "effective_balance"}}</th>
+                            <th>{{i18n "hit_time"}}</th>
+                            <th class="numeric">{{i18n "deadline"}}</th>
+                            <th class="numeric">{{i18n "remaining"}}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#each generators}}
+                        <tr>
+                            <td>{{{accountFormatted}}}</td>
+                            <td class="numeric">{{{balanceFormatted}}}</td>
+                            <td>{{{hitTimeFormatted}}}</td>
+                            <td class="numeric">{{deadline}}</td>
+                            <td class="numeric">{{{remaining}}}</td>
+                        </tr>
+                        {{/each}}
+                        </tbody>
+                    </table>
+                    <div class="data-loading-container"><img src="img/loading_indicator.gif" alt="Loading..." width="32" height="32" /></div>
+                    <div class="data-empty-container">
+                        <p>
+                            <span data-i18n="no_generators">No generators</span>.
+                        </p>
+                    </div>
+                    <div class="data-pagination"></div>
+                </div>
+            </div>
+        </section>
+    </script>
+</div>
